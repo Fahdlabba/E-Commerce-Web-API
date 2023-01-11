@@ -1,6 +1,7 @@
 const path=require('path')
 const Item=require('../../Models/ItemsModel')
 const User=require("../../Models/UserModel")
+const Freelancer=require('../../Models/FreelancerModel')
 const {check,validationResult}=require('express-validator')
 
 
@@ -15,17 +16,22 @@ const addItem=async(req,res)=>{
       return res.status(400).send(result);
     }
     const {itemTitle,itemDescription,itemStock ,itemPrice,itemAuthor}=req.body;
-    const VerifyAuthor=await User.find({mail:itemAuthor})
-    if(VerifyAuthor.length===0){
+    const VerifyAuthor=await User.find({mail:itemAuthor,status:"freelancer"})
+    if(VerifyAuthor.length === 0){
         return res.send("Author not found ! ")
     }
     const item=new Item({
         title : itemTitle,
         description:itemDescription,
         stock:itemStock,
-        price,itemPrice,
+        price:itemPrice,
         author:itemAuthor,
     })
+    const freelancer=new Freelancer({
+        mail:itemAuthor,
+        itemTitle:itemTitle,
+    })
+    freelancer.save()
     item.save().catch((err)=>{console.log(err)})
     res.send("Item added succefully ")
 }

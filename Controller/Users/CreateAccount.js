@@ -9,7 +9,7 @@ const createUser=async(req,res)=>{
     await check('userStatus').notEmpty().run(req)
     const result = validationResult(req);
     if (!result.isEmpty()) {
-      return res.status(400).send('Verifer Votre donneés');
+      return res.status(400).send(result);
     }
     const {userMail,userName,userPassword,userStatus}=req.body;
     const VerifyUser=await User.find({mail:userMail})

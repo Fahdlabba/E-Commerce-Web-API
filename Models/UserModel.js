@@ -19,6 +19,11 @@ const userSchema =new Schema({
     status:{
         type:String,
         require:true
+    },
+    sold:{
+        type :Number ,
+        require:true,
+        default:0,
     }
 })
 
