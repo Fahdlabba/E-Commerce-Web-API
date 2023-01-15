@@ -12,7 +12,6 @@ const buyItem=async (req,res)=>{
     }
     const verifyCustomerSolde=await User.find({mail:customerMail})
     const item=await Item.find({title:itemTitle})
-    console.log(item)
     if(verifyCustomerSolde[0].sold>item[0].price ){
         return res.send('Check ur solde ');
     }
@@ -24,7 +23,7 @@ const buyItem=async (req,res)=>{
         {author:item[0].author},
         {$inc:{stock:-1}}
     )
-    res.send("YES")
+    res.send("Purchased !")
 
 }
 
