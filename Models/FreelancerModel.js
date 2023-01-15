@@ -12,11 +12,6 @@ const freelancerSchema =new Schema({
         type : String ,
         require :true,
     },
-    sold:{
-        type :Number ,
-        require:true,
-        default:0,
-    }
 })
 
 

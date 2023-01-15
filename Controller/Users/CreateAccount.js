@@ -1,4 +1,3 @@
-const path=require('path')
 const User=require('../../Models/UserModel')
 const {check,validationResult}=require('express-validator')
 
@@ -14,8 +13,7 @@ const createUser=async(req,res)=>{
     const {userMail,userName,userPassword,userStatus}=req.body;
     const VerifyUser=await User.find({mail:userMail})
     if(VerifyUser.length!=0){
-        res.status(404).send('user found')
-        return 
+        return res.status(404).send('user found')
     }
     const user=new User({
         name:userName,

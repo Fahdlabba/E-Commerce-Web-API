@@ -1,8 +1,5 @@
-const path=require('path')
-const Item=require('../../Models/ItemsModel')
 const User=require("../../Models/UserModel")
 const Freelancer=require('../../Models/FreelancerModel')
-const {check,validationResult}=require('express-validator')
 
 const fetchItem=async(req,res)=>{
     const {freelancerMail}=req.body

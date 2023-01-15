@@ -6,6 +6,10 @@ const buyItem=async (req,res)=>{
     await check('customerMail').isEmail().run(req);
     const {customerMail}=req.body
     const {itemTitle}=req.query.itemTitle
+    const result = validationResult(req);
+    if (!result.isEmpty()) {
+      return res.status(400).send(result);
+    }
     const verifyCustomerSolde=await User.find({mail:customerMail})
     const item=await Item.find({title:itemTitle})
     console.log(item)

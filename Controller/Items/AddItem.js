@@ -1,4 +1,3 @@
-const path=require('path')
 const Item=require('../../Models/ItemsModel')
 const User=require("../../Models/UserModel")
 const Freelancer=require('../../Models/FreelancerModel')
